@@ -5,6 +5,7 @@ A simple website offering electronic devices, all the items and their details is
 ## Key Learnings
 
 ✅ **DOM Manipulation** = Dynamically display products, filters, and cart.
+
 ✅ **Event Listener** = Users click the "add to cart" or "Delete from Cart" button, change input value in realtime case and detail quantity items.
 
 ## About

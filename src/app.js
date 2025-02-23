@@ -22,7 +22,7 @@ function addCart(e, btn) {
   // Add new price item to totalPrice variable 
   totalPrice += priceValue;
   // Conversion to rupiah currency
-  document.getElementById('total-price').textContent = 'Rp' + totalPrice.toLocaleString('id-ID');
+  document.getElementById('total-price').textContent = 'Rp. ' + totalPrice.toLocaleString('id-ID');
 
   // If the user adds the same item to the cart, it will stack the qty value
   const cartItems = canvasCart.querySelectorAll('.cart-item');
@@ -59,7 +59,7 @@ function addCart(e, btn) {
     <p class="mb-1 cart-price" data-price="${getPriceData}">${getPriceText}</p>
     <div class="form-group d-flex gap-2">
       <label for="qty">Qty</label>
-      <input id="qty" value="1" oninput="updateHandler(this)" class="form-control form-control-sm qty-input" min="1" type="number">
+      <input required id="qty" value="1" oninput="updateHandler(this)" class="form-control form-control-sm qty-input" min="1" type="number">
     </div>
   </div>
 </div>
@@ -86,7 +86,7 @@ function addCart(e, btn) {
     }
     setTimeout(() => {
       alert('Item successfully added to cart!');
-    }, 500);
+    }, 300);
   }
 }
 
@@ -98,7 +98,7 @@ function updateHandler() {
   cartItems.forEach(cartItem => {
     const price = parseInt(cartItem.querySelector('.cart-price').getAttribute('data-price'));
     let quantity = parseInt(cartItem.querySelector('.qty-input').value);
-    if (quantity == isNaN) {
+    if (isNaN(quantity)) {
       quantity = 0;
     }
     newTotalPrice += price * quantity;
@@ -118,7 +118,7 @@ function updateHandler() {
     itemIconTotal.textContent = totalItems;
   }
   captionTotal.textContent = 'Total items : ' + totalItems;
-  document.getElementById('total-price').textContent = 'Rp' + totalPrice.toLocaleString('id-ID');
+  document.getElementById('total-price').textContent = 'Rp. ' + totalPrice.toLocaleString('id-ID');
 }
 
 // Delete item handler if user klik delete button in cart list
@@ -133,7 +133,7 @@ function deleteItemHandler(item) {
     cartItem.remove();
     setTimeout(() => {
       alert('Item successfully deleted!');
-    }, 500);
+    }, 300);
     updateHandler();
   }, { once: true });
 }
