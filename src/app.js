@@ -5,12 +5,12 @@ function addCart(e, btn) {
   // Search closest card element after button click event
   const card = btn.closest('.card');
 
+  const getId = card.getAttribute('data-id');
   // Get data from card
   const getTitle = card.querySelector('.card-title').textContent;
   const getImage = card.querySelector('.card-img-top').src;
   const getPriceText = card.querySelector('.card-price').textContent;
   const getPriceData = card.querySelector('.card-price').getAttribute('data-price');
-
 
   // Get cart container
   const canvasCart = document.querySelector('.offcanvas-body');
@@ -44,11 +44,11 @@ function addCart(e, btn) {
   } else {
     // HTML structure of cart items
     const cartItemHTML = `
-<div class="row mb-4 cart-item">
+<div class="row mb-4 cart-item" data-id="${getId}">
   <div class="col-md-3 mb-4">
     <div class="position-relative" style="width: 80px; height: 80px; background-color: gray;">
       <img class="" src="${getImage}" alt="${getTitle}"style="width:100%; height:100%; object-fit: cover;">
-      <a href="#"><span class="position-absolute start-0 top-0 translate-middle badge bg-danger">X</span></a>
+      <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><span class="position-absolute start-0 top-0 translate-middle badge bg-danger"  onclick="deleteItemHandler(this)">X</span></a>
     </div>
   </div>
   <div class="col-md-9 ps-2">
@@ -56,7 +56,7 @@ function addCart(e, btn) {
     <p class="mb-1 cart-price" data-price="${getPriceData}">${getPriceText}</p>
     <div class="form-group d-flex gap-2">
       <label for="qty">Qty</label>
-      <input id="qty" value="1" oninput="qtyHandler(this)" class="form-control form-control-sm qty-input" min="1" type="number">
+      <input id="qty" value="1" oninput="qtyHandler()" class="form-control form-control-sm qty-input" min="1" type="number">
     </div>
   </div>
 </div>
@@ -84,7 +84,7 @@ function addCart(e, btn) {
   }
 }
 
-function qtyHandler(item) {
+function qtyHandler() {
   const cartItems = document.querySelectorAll('.cart-item');
   let newTotalPrice = 0;
 
@@ -101,7 +101,25 @@ function qtyHandler(item) {
   totalPrice = newTotalPrice;
   document.getElementById('total-price').textContent = 'Rp' + totalPrice.toLocaleString('id-ID');
 }
+function deleteItemHandler(item) {
+  // Search closest cart item element after button click event
+  const cartItem = item.closest('.cart-item');
+  const getId = cartItem.getAttribute('data-id');
 
+  const alertContainer = document.getElementById('alert-container');
+  const alertContent = `
+   <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Item successfully deleted</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>`;
+
+  const modalContainer = document.getElementById('deleteModal');
+  const btnDelete = modalContainer.querySelector('.btn-primary');
+  btnDelete.addEventListener('click', function () {
+    cartItem.remove();
+    alertContainer.insertAdjacentHTML('beforeend', alertContent);
+  });
+}
 
 // TotalPrice global
 let totalPrice = 0;

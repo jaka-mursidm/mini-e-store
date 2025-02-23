@@ -61,7 +61,7 @@
                         </form>
                     </div>
                     <div class="col-md-3 mb-4">
-                        <div class="card">
+                        <div class="card" data-id="1">
                             <img src="sony-wh1000xm5.jpg" class="card-img-top" alt="Sony WH-1000XM5">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">Sony WH-1000XM5</h5>
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-4">
-                        <div class="card">
+                        <div class="card" data-id="2">
                             <img src="bose-qc45.jpg" class="card-img-top" alt="Bose QuietComfort 45">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">Bose QuietComfort 45</h5>
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-4">
-                        <div class="card">
+                        <div class="card" data-id="3">
                             <img src="macbook-air-m2.jpg" class="card-img-top" alt="MacBook Air M2">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">MacBook Air M2</h5>
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-4">
-                        <div class="card">
+                        <div class="card" data-id="4">
                             <img src="asus-rog-g14.jpg" class="card-img-top" alt="ASUS ROG Zephyrus G14">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">ASUS ROG Zephyrus G14</h5>
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-4">
-                        <div class="card">
+                        <div class="card" data-id="5">
                             <img src="samsung-s23-ultra.jpg" class="card-img-top" alt="Samsung Galaxy S23 Ultra">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">Samsung Galaxy S23 Ultra</h5>
@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-4">
-                        <div class="card">
+                        <div class="card" data-id="6">
                             <img src="iphone-14-pro-max.jpg" class="card-img-top" alt="iPhone 14 Pro Max">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">iPhone 14 Pro Max</h5>
@@ -145,7 +145,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-4">
-                        <div class="card">
+                        <div class="card" data-id="7">
                             <img src="canon-eos-r6.jpg" class="card-img-top" alt="Canon EOS R6">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">Canon EOS R6</h5>
@@ -159,7 +159,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-4">
-                        <div class="card">
+                        <div class="card" data-id="8">
                             <img src="sony-a7-iv.jpg" class="card-img-top" alt="Sony Alpha A7 IV">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">Sony Alpha A7 IV</h5>
@@ -185,12 +185,34 @@
 
         </a>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Notification</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Do you want to delete this item?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas" aria-labelledby="cartCanvasLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title fw-bold" id="cartCanvasLabel">Cart</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body ">
+            <div id="alert-container">
+            </div>
             <h5 class="mb-4 fw-bold" id="total-item">Total items : 0</h5>
             <div class="position-relative cart-items">
             </div>
