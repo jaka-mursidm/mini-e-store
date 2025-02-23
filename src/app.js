@@ -53,10 +53,10 @@ function addCart(e, btn) {
   </div>
   <div class="col-md-9 ps-2">
     <p class="mb-1 fw-bold cart-title">${getTitle}</p>
-    <p class="mb-1 cart-price">${getPriceText}</p>
+    <p class="mb-1 cart-price" data-price="${getPriceData}">${getPriceText}</p>
     <div class="form-group d-flex gap-2">
       <label for="qty">Qty</label>
-      <input id="qty" value="1" onChange="" class="form-control form-control-sm qty-input" type="number">
+      <input id="qty" value="1" oninput="qtyHandler(this)" class="form-control form-control-sm qty-input" min="1" type="number">
     </div>
   </div>
 </div>
@@ -83,6 +83,25 @@ function addCart(e, btn) {
     }
   }
 }
+
+function qtyHandler(item) {
+  const cartItems = document.querySelectorAll('.cart-item');
+  let newTotalPrice = 0;
+
+  cartItems.forEach(cartItem => {
+    const price = parseInt(cartItem.querySelector('.cart-price').getAttribute('data-price'));
+    let quantity = parseInt(cartItem.querySelector('.qty-input').value);
+    if (quantity == NaN) {
+      quantity = 0;
+      console.log(quantity);
+
+    }
+    newTotalPrice += price * quantity;
+  });
+  totalPrice = newTotalPrice;
+  document.getElementById('total-price').textContent = 'Rp' + totalPrice.toLocaleString('id-ID');
+}
+
 
 // TotalPrice global
 let totalPrice = 0;
