@@ -24,7 +24,7 @@ function addCart(e, btn) {
   // Conversion to rupiah currency
   document.getElementById('total-price').textContent = 'Rp' + totalPrice.toLocaleString('id-ID');
 
-  // Get cart container
+  // If the user adds the same item to the cart, it will stack the qty value
   const cartItems = canvasCart.querySelectorAll('.cart-item');
   let existingCartItem = null;
   if (cartItems.length > 0) {
@@ -39,10 +39,13 @@ function addCart(e, btn) {
     const qtyInput = existingCartItem.querySelector('.qty-input');
     let currentQty = parseInt(qtyInput.value);
     qtyInput.value = currentQty + 1;
-
     totalPrice += priceValue;
+    setTimeout(() => {
+      alert('Item successfully added to qty!');
+    }, 500);
+    // If not, it will add it to the cart list as a new item
   } else {
-    // HTML structure of cart items
+    // HTML structure of item
     const cartItemHTML = `
 <div class="row mb-4 cart-item" data-id="${getId}">
   <div class="col-md-3 mb-4">
@@ -56,23 +59,23 @@ function addCart(e, btn) {
     <p class="mb-1 cart-price" data-price="${getPriceData}">${getPriceText}</p>
     <div class="form-group d-flex gap-2">
       <label for="qty">Qty</label>
-      <input id="qty" value="1" oninput="qtyHandler()" class="form-control form-control-sm qty-input" min="1" type="number">
+      <input id="qty" value="1" oninput="updateHandler(this)" class="form-control form-control-sm qty-input" min="1" type="number">
     </div>
   </div>
 </div>
 `;
     // Add cart items to the end of the container using insertAdjacentHTML
-
     bodyCart.insertAdjacentHTML('beforeend', cartItemHTML);
 
-    //  Update total item in the cart
+    //  Display update total item in the cart
     const totalItems = bodyCart.querySelectorAll('.cart-item').length;
     const captionTotal = document.getElementById('total-item');
     captionTotal.textContent = 'Total items : ' + totalItems;
 
-    // If the cart item is not there, notification will not be given
+    // If the cart item is not there, icon notification will not be given
     const cartIcon = document.getElementById('cart-icon');
     const itemIconTotal = document.getElementById('total-cart-icon');
+
     if (totalItems > 1) {
       itemIconTotal.textContent = totalItems;
     } else {
@@ -81,44 +84,58 @@ function addCart(e, btn) {
             ${totalItems}</span>`;
       cartIcon.insertAdjacentHTML('beforeend', notifTotalHTML);
     }
+    setTimeout(() => {
+      alert('Item successfully added to cart!');
+    }, 500);
   }
 }
 
-function qtyHandler() {
+// Update handler is executed when user changes or adds an item
+function updateHandler() {
   const cartItems = document.querySelectorAll('.cart-item');
   let newTotalPrice = 0;
-
+  // Update data input value
   cartItems.forEach(cartItem => {
     const price = parseInt(cartItem.querySelector('.cart-price').getAttribute('data-price'));
     let quantity = parseInt(cartItem.querySelector('.qty-input').value);
-    if (quantity == NaN) {
+    if (quantity == isNaN) {
       quantity = 0;
-      console.log(quantity);
-
     }
     newTotalPrice += price * quantity;
   });
   totalPrice = newTotalPrice;
+
+
+  // Display total item and total price
+  const totalItems = cartItems.length;
+  const captionTotal = document.getElementById('total-item');
+  const iconTotal = document.getElementById('cart-icon');
+  const itemIconTotal = document.getElementById('total-cart-icon');
+
+  if (totalItems == 0) {
+    itemIconTotal.remove();
+  } else {
+    itemIconTotal.textContent = totalItems;
+  }
+  captionTotal.textContent = 'Total items : ' + totalItems;
   document.getElementById('total-price').textContent = 'Rp' + totalPrice.toLocaleString('id-ID');
 }
+
+// Delete item handler if user klik delete button in cart list
 function deleteItemHandler(item) {
-  // Search closest cart item element after button click event
+  //Cart item target
   const cartItem = item.closest('.cart-item');
-  const getId = cartItem.getAttribute('data-id');
-
-  const alertContainer = document.getElementById('alert-container');
-  const alertContent = `
-   <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Item successfully deleted</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>`;
-
   const modalContainer = document.getElementById('deleteModal');
   const btnDelete = modalContainer.querySelector('.btn-primary');
+
+  // Delete item where yes button modal is clicked
   btnDelete.addEventListener('click', function () {
     cartItem.remove();
-    alertContainer.insertAdjacentHTML('beforeend', alertContent);
-  });
+    setTimeout(() => {
+      alert('Item successfully deleted!');
+    }, 500);
+    updateHandler();
+  }, { once: true });
 }
 
 // TotalPrice global
