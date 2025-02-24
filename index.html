@@ -49,19 +49,19 @@
                 <div class="row justify-content-center">
                     <div class="col-12 mb-4">
                         <form class="d-flex justify-content-end w-full">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
                             <select class="form-select me-2" type="category" placeholder="category"
                                 aria-label="category">
-                                <option value=""></option>
-                                <option value="">Category 1</option>
-                                <option value="">Category 2</option>
-                                <option value="">Category 3</option>
+                                <option value="">Select an item</option>
+                                <option value="Camera">Camera</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Headphone">Headphone</option>
+                                <option value="Smartphone">Smartphone</option>
                             </select>
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>
-
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-3 mb-4" data-category="Headphone">
                         <div class="card">
                             <img style="height: 230px; object-fit: cover; width: 100%;"
                                 src="assets/img/Bose QuietComfort 45.jpeg" class="card-img-top"
@@ -70,14 +70,14 @@
                                 <h5 class="card-title fw-bold">Bose QuietComfort 45</h5>
                                 <p class="card-text">Over-ear wireless headphones with world-class noise cancellation,
                                     deep bass, and comfortable fit for long usage.</p>
-                                <p><strong>Category:</strong> Headphones</p>
+                                <p><strong>Category:</strong> Headphone</p>
                                 <p class="card-price" data-price="5499000"><strong>Price:</strong> Rp5.499.000</p>
                                 <a href="#" class="btn btn-primary btnCart" onclick="addCart(event,this)">Add to
                                     cart</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-3 mb-4" data-category="Camera">
                         <div class="card">
                             <img style="height: 230px; object-fit: cover; width: 100%;"
                                 src="/assets/img/Sony Alpha A7 IV.jpg" class="card-img-top" alt="Sony Alpha A7 IV">
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-3 mb-4" data-category="Laptop">
                         <div class="card">
                             <img style="height: 230px; object-fit: cover; width: 100%;"
                                 src="/assets/img/MacBook Air M2.jpg" class="card-img-top" alt="MacBook Air M2">
@@ -107,7 +107,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-3 mb-4" data-category="Headphone">
                         <div class="card">
                             <img style="height: 230px; object-fit: cover; width: 100%;"
                                 src="assets/img/Sony WH-1000XM5.jpg" class="card-img-top" alt="Sony WH-1000XM5">
@@ -115,7 +115,7 @@
                                 <h5 class="card-title fw-bold">Sony WH-1000XM5</h5>
                                 <p class="card-text">Premium noise-canceling headphones with high-fidelity audio,
                                     30-hour battery life, and adaptive sound control.</p>
-                                <p><strong>Category:</strong> Headphones</p>
+                                <p><strong>Category:</strong> Headphone</p>
                                 <p class="card-price" data-price="5999000"><strong>Price:</strong> Rp5.999.000</p>
                                 <a href="#" class="btn btn-primary btnCart" onclick="addCart(event,this)">Add to
                                     cart</a>
@@ -124,7 +124,7 @@
                     </div>
 
 
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-3 mb-4" data-category="Smartphone">
                         <div class="card">
                             <img style="height: 230px; object-fit: cover; width: 100%;"
                                 src="/assets/img/iPhone 14 Pro Max.jpg" class="card-img-top" alt="iPhone 14 Pro Max">
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-3 mb-4" data-category="Laptop">
                         <div class="card">
                             <img style="height: 230px; object-fit: cover; width: 100%;"
                                 src="/assets/img/ASUS ROG Zephyrus G14.jpg" class="card-img-top"
@@ -155,7 +155,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-3 mb-4" data-category="Camera">
                         <div class="card">
                             <img style="height: 230px; object-fit: cover; width: 100%;"
                                 src="/assets/img/Canon EOS R6.jpg" class="card-img-top" alt="Canon EOS R6">
@@ -170,7 +170,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-3 mb-4" data-category="Smartphone">
                         <div class="card">
                             <img style="height: 230px; object-fit: cover; width: 100%;"
                                 src="/assets/img/Samsung Galaxy S23 Ultra.jpg" class="card-img-top"
